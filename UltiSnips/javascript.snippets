@@ -57,6 +57,20 @@ class ${1:`!v expand('%:t:r')`} extends Component {
 export default $1;
 endsnippet
 
+snippet rdc "React Dumb Component" b
+import React, { Component } from 'react';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+	render() {
+		return(
+			<div>
+				$2
+			</div>
+		)
+	}
+}
+endsnippet
+
 snippet rfc "React Functional Component" b
 import React, { PropTypes } from 'react';
 import styles from './${2:$1}.css';
