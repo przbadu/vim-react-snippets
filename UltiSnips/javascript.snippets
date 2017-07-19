@@ -1,6 +1,7 @@
-# React & JSX
-snippet rrcc "React Redux Class Component" b
-import React, { Component, PropTypes } from 'react';
+# React & JSX with prop-types
+snippet rrccp "React Redux Class Component" b
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './${2:$1}.css';
 
@@ -31,8 +32,35 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)($1);
 endsnippet
 
-snippet rcc "React Class Component" b
-import React, { Component, PropTypes } from 'react';
+snippet rrcc "React Redux Class Component" b
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styles from './${2:$1}.css';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div className={styles.base}>
+				$3
+			</div>
+		);
+	}
+}
+
+function mapStateToProps(state) {
+	return {};
+}
+
+export default connect(mapStateToProps)($1);
+endsnippet
+
+snippet rccp "React Class Component" b
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './${2:$1}.css';
 
 class ${1:`!v expand('%:t:r')`} extends Component {
@@ -57,22 +85,31 @@ class ${1:`!v expand('%:t:r')`} extends Component {
 export default $1;
 endsnippet
 
-snippet rdc "React Dumb Component" b
+
+snippet rcc "React Class Component" b
 import React, { Component } from 'react';
+import styles from './${2:$1}.css';
 
 class ${1:`!v expand('%:t:r')`} extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
-		return(
-			<div>
-				$2
+		return (
+			<div className={styles.base}>
+				$3
 			</div>
-		)
+		);
 	}
 }
+
+export default $1;
 endsnippet
 
-snippet rfc "React Functional Component" b
-import React, { PropTypes } from 'react';
+snippet rfcp "React Functional Component" b
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './${2:$1}.css';
 
 function ${1:`!v expand('%:t:r')`}(${3:{...props}}) {
@@ -86,6 +123,24 @@ function ${1:`!v expand('%:t:r')`}(${3:{...props}}) {
 $1.defaultProps = {};
 
 $1.propTypes = {};
+
+export default $1;
+endsnippet
+
+
+snippet rfc "React Functional Component" b
+import React from 'react';
+import styles from './${2:$1}.css';
+
+function ${1:`!v expand('%:t:r')`}(${3:{...props}}) {
+	return (
+		<div className={styles.base}>
+			$4
+		</div>
+	);
+}
+
+$1.defaultProps = {};
 
 export default $1;
 endsnippet
